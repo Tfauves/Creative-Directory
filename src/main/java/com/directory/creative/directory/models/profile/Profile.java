@@ -12,6 +12,7 @@ public class Profile {
     private Long id;
     private String fname;
     private String lname;
+    private String city;
     private String state;
     private String phone;
     private String discipline;
@@ -23,12 +24,13 @@ public class Profile {
 
     public Profile() {}
 
-    public Profile(User user, String fname, String lname, String phone, String discipline) {
+    public Profile(User user, String fname, String lname, String phone, String discipline, String city) {
         this.user = user;
         this.fname = fname;
         this.lname = lname;
         this.phone = phone;
         this.discipline = discipline;
+        this.city = city;
     }
 
 
@@ -86,5 +88,13 @@ public class Profile {
 
     public void setUser(User user) {
         this.user = user;
+    }
+
+    public String getCity() {
+        return city;
+    }
+
+    public void setCity(String city) {
+        this.city = city;
     }
 }

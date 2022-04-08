@@ -52,7 +52,12 @@ public class ProfileController {
         }
         Profile profile = repository.findByUser_id(currentUser.getId()).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
 
-//        if(updateData.getFname() !=null)
+        if (updateData.getFname() !=null) profile.setFname(updateData.getFname());
+        if (updateData.getLname() != null) profile.setLname(updateData.getLname());
+        if (updateData.getDiscipline() != null) profile.setDiscipline(updateData.getDiscipline());
+        if (updateData.getPhone() != null) profile.setPhone(updateData.getPhone());
+        if (updateData.getState() != null) profile.setState(updateData.getState());
+        if (updateData.getCity() != null) profile.setCity(updateData.getCity());
 
         return repository.save(profile);
 
