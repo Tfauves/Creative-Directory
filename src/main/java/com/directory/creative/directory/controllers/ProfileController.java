@@ -5,6 +5,8 @@ import com.directory.creative.directory.models.auth.User;
 import com.directory.creative.directory.models.profile.Profile;
 import com.directory.creative.directory.repositories.ProfileRepository;
 import com.directory.creative.directory.service.UserService;
+import org.hibernate.Filter;
+import org.hibernate.Session;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -12,6 +14,7 @@ import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 
+import javax.persistence.EntityManager;
 import java.util.List;
 
 @CrossOrigin
@@ -21,6 +24,9 @@ public class ProfileController {
 
     @Autowired
     ProfileRepository repository;
+
+    @Autowired
+    private EntityManager entityManager;
 
     @Autowired
     UserService userService;
@@ -36,11 +42,17 @@ public class ProfileController {
         return new ResponseEntity<>(repository.save(newProfile), HttpStatus.CREATED);
     }
 
+
     @GetMapping
     @PreAuthorize("hasRole('ADMIN')")
-    public @ResponseBody
-    List<Profile> readAllProfile() {
-        return repository.findAll();
+    public Iterable<Profile> readAllProfile(boolean isDeleted) {
+        Session session = entityManager.unwrap(Session.class);
+        Filter filter = session.enableFilter("deletedProfileFilter");
+        //Here we add the isDeleted parameter that we'll add to the object Filter affecting the process of reading the Product entity.
+        filter.setParameter("isDeleted", isDeleted);
+        Iterable<Profile> profiles = repository.findAll();
+        session.disableFilter("deletedProfileFilter");
+        return profiles;
     }
 
     @GetMapping("/self")
@@ -73,5 +85,20 @@ public class ProfileController {
 
         return repository.save(profile);
 
+    }
+
+    @DeleteMapping("{id}")
+    public ResponseEntity<String> deleteProfile(@PathVariable Long id) {
+        repository.deleteById(id);
+        return new ResponseEntity<>("deleted", HttpStatus.OK);
+    }
+
+
+    public EntityManager getEntityManager() {
+        return entityManager;
+    }
+
+    public void setEntityManager(EntityManager entityManager) {
+        this.entityManager = entityManager;
     }
 }
