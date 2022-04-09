@@ -2,10 +2,23 @@ package com.directory.creative.directory.models.profile;
 
 import com.directory.creative.directory.models.auth.User;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import org.hibernate.annotations.*;
 
 import javax.persistence.*;
+import javax.persistence.Entity;
+import javax.persistence.Table;
 
 @Entity
+@Table(name = "profile")
+// @SQLDelete annotation to override the delete command.
+// that changes the deleted field value to true instead of deleting the data permanently.
+@SQLDelete(sql = "UPDATE profile SET deleted = true WHERE id =?")
+//still want the deleted data to be accessible.
+//these annotations can dynamically add conditions as needed:
+//@FilterDef annotation defines the basic requirements that will be used by @Filter annotation
+@FilterDef(name = "deletedProfileFilter", parameters = @ParamDef(name = "isDeleted", type = "boolean"))
+@Filter(name = "deletedProfileFilter", condition = "deleted = :isDeleted")
+
 public class Profile {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -16,6 +29,8 @@ public class Profile {
     private String state;
     private String phone;
     private String discipline;
+    //deleted property with the default value set as FALSE
+    private Boolean deleted = Boolean.FALSE;
 
     @OneToOne
     @JoinColumn(name = "user_id", referencedColumnName = "id")
@@ -96,5 +111,13 @@ public class Profile {
 
     public void setCity(String city) {
         this.city = city;
+    }
+
+    public Boolean getDeleted() {
+        return deleted;
+    }
+
+    public void setDeleted(Boolean deleted) {
+        this.deleted = deleted;
     }
 }
