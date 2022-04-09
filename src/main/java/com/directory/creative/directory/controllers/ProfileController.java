@@ -8,8 +8,11 @@ import com.directory.creative.directory.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
+
+import java.util.List;
 
 @CrossOrigin
 @RestController
@@ -33,10 +36,18 @@ public class ProfileController {
         return new ResponseEntity<>(repository.save(newProfile), HttpStatus.CREATED);
     }
 
+    @GetMapping
+    @PreAuthorize("hasRole('ADMIN')")
+    public @ResponseBody
+    List<Profile> readAllProfile() {
+        return repository.findAll();
+    }
+
     @GetMapping("/self")
-    public @ResponseBody Profile readProfile () {
+    public @ResponseBody
+    Profile readProfile() {
         User currentUser = userService.getCurrentUser();
-        if(currentUser == null) {
+        if (currentUser == null) {
             return null;
         }
 
@@ -44,7 +55,8 @@ public class ProfileController {
     }
 
     @PutMapping()
-    public @ResponseBody Profile updateProfile(@RequestBody Profile updateData) {
+    public @ResponseBody
+    Profile updateProfile(@RequestBody Profile updateData) {
         User currentUser = userService.getCurrentUser();
         if (currentUser == null) {
             return null;
@@ -52,7 +64,7 @@ public class ProfileController {
         }
         Profile profile = repository.findByUser_id(currentUser.getId()).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
 
-        if (updateData.getFname() !=null) profile.setFname(updateData.getFname());
+        if (updateData.getFname() != null) profile.setFname(updateData.getFname());
         if (updateData.getLname() != null) profile.setLname(updateData.getLname());
         if (updateData.getDiscipline() != null) profile.setDiscipline(updateData.getDiscipline());
         if (updateData.getPhone() != null) profile.setPhone(updateData.getPhone());
@@ -62,6 +74,4 @@ public class ProfileController {
         return repository.save(profile);
 
     }
-
-
 }
