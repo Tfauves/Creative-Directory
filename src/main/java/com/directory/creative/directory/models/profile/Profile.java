@@ -11,10 +11,10 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "profile")
 // @SQLDelete annotation to override the delete command.
-// that changes the deleted field value to true instead of deleting the data permanently.
+// changes the deleted field value to true instead of deleting the data permanently.
 @SQLDelete(sql = "UPDATE profile SET deleted = true WHERE id =?")
-//still want the deleted data to be accessible.
-//these annotations can dynamically add conditions as needed:
+//the deleted data will still be accessible.
+
 //@FilterDef annotation defines the basic requirements that will be used by @Filter annotation
 @FilterDef(name = "deletedProfileFilter", parameters = @ParamDef(name = "isDeleted", type = "boolean"))
 @Filter(name = "deletedProfileFilter", condition = "deleted = :isDeleted")

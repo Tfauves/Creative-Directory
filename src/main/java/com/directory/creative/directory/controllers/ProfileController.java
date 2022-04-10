@@ -48,7 +48,6 @@ public class ProfileController {
     public Iterable<Profile> readAllProfile(boolean isDeleted) {
         Session session = entityManager.unwrap(Session.class);
         Filter filter = session.enableFilter("deletedProfileFilter");
-        //Here we add the isDeleted parameter that we'll add to the object Filter affecting the process of reading the Product entity.
         filter.setParameter("isDeleted", isDeleted);
         Iterable<Profile> profiles = repository.findAll();
         session.disableFilter("deletedProfileFilter");
