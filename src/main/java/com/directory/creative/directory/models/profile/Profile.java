@@ -1,12 +1,16 @@
 package com.directory.creative.directory.models.profile;
 
+import com.directory.creative.directory.models.Discipline;
 import com.directory.creative.directory.models.auth.User;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import org.hibernate.annotations.*;
 
 import javax.persistence.*;
 import javax.persistence.Entity;
 import javax.persistence.Table;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 @Table(name = "profile")
@@ -28,7 +32,6 @@ public class Profile {
     private String city;
     private String state;
     private String phone;
-    private String discipline;
     //deleted property with the default value set as FALSE
     private Boolean deleted = Boolean.FALSE;
 
@@ -37,14 +40,22 @@ public class Profile {
     @JsonIgnore
     private User user;
 
+    @ManyToMany
+    @JoinTable(
+            name = "profile_discipline",
+            joinColumns = @JoinColumn(name = "profile_id"),
+            inverseJoinColumns = @JoinColumn(name = "discipline_id")
+    )
+    @JsonIgnoreProperties("profile")
+    private Set<Discipline> discipline = new HashSet<>();
+
     public Profile() {}
 
-    public Profile(User user, String fname, String lname, String phone, String discipline, String city) {
+    public Profile(User user, String fname, String lname, String phone, String city) {
         this.user = user;
         this.fname = fname;
         this.lname = lname;
         this.phone = phone;
-        this.discipline = discipline;
         this.city = city;
     }
 
@@ -89,14 +100,6 @@ public class Profile {
         this.phone = phone;
     }
 
-    public String getDiscipline() {
-        return discipline;
-    }
-
-    public void setDiscipline(String discipline) {
-        this.discipline = discipline;
-    }
-
     public User getUser() {
         return user;
     }
@@ -119,5 +122,13 @@ public class Profile {
 
     public void setDeleted(Boolean deleted) {
         this.deleted = deleted;
+    }
+
+    public Set<Discipline> getDiscipline() {
+        return discipline;
+    }
+
+    public void setDiscipline(Set<Discipline> discipline) {
+        this.discipline = discipline;
     }
 }
