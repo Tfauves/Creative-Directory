@@ -42,9 +42,14 @@ public class ProfileController {
         return new ResponseEntity<>(repository.save(newProfile), HttpStatus.CREATED);
     }
 
+    @GetMapping("/all")
+    @PreAuthorize("hasRole('ADMIN')")
+    public @ResponseBody List<Profile> findAll() {
+        return repository.findAll();
+    }
+
 
     @GetMapping
-    @PreAuthorize("hasRole('ADMIN')")
     public Iterable<Profile> readAllProfile(boolean isDeleted) {
         Session session = entityManager.unwrap(Session.class);
         Filter filter = session.enableFilter("deletedProfileFilter");
