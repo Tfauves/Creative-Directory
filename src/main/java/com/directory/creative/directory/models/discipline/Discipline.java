@@ -1,23 +1,22 @@
-package com.directory.creative.directory.models;
+package com.directory.creative.directory.models.discipline;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Entity
 public class Discipline {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private String type;
     private String practice;
+    @OneToOne
+    @JoinColumn(name = "media_type_id", referencedColumnName = "id")
+    private MediaType mediaType;
 
     public Discipline() {}
 
-    public Discipline(String practice, String type) {
+    public Discipline(String practice, MediaType mediaType) {
         this.practice = practice;
-        this.type = type;
+        this.mediaType = mediaType;
     }
 
     public Long getId() {
@@ -36,11 +35,12 @@ public class Discipline {
         this.practice = practice;
     }
 
-    public String getType() {
-        return type;
+
+    public MediaType getMediaType() {
+        return mediaType;
     }
 
-    public void setType(String type) {
-        this.type = type;
+    public void setMediaType(MediaType mediaType) {
+        this.mediaType = mediaType;
     }
 }

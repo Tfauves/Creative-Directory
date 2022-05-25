@@ -1,6 +1,6 @@
 package com.directory.creative.directory.models.profile;
 
-import com.directory.creative.directory.models.Discipline;
+import com.directory.creative.directory.models.discipline.Discipline;
 import com.directory.creative.directory.models.auth.User;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
@@ -39,7 +39,7 @@ public class Profile {
     @JoinColumn(name = "user_id", referencedColumnName = "id")
     @JsonIgnore
     private User user;
-
+    // TODO: 5/25/2022 set needs to be updated for mediatype object 
     @ManyToMany
     @JoinTable(
             name = "profile_discipline",
