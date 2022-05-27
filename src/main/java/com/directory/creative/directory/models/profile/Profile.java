@@ -39,15 +39,15 @@ public class Profile {
     @JoinColumn(name = "user_id", referencedColumnName = "id")
     @JsonIgnore
     private User user;
-    // TODO: 5/25/2022 set needs to be updated for mediatype object 
-    @ManyToMany
-    @JoinTable(
-            name = "profile_discipline",
-            joinColumns = @JoinColumn(name = "profile_id"),
-            inverseJoinColumns = @JoinColumn(name = "discipline_id")
-    )
-    @JsonIgnoreProperties("profile")
-    private Set<Discipline> discipline = new HashSet<>();
+
+//    @ManyToMany
+//    @JoinTable(
+//            name = "profile_discipline",
+//            joinColumns = @JoinColumn(name = "profile_id"),
+//            inverseJoinColumns = @JoinColumn(name = "discipline_id")
+//    )
+//    @JsonIgnoreProperties("profile")
+//    public Set<Discipline> discipline = new HashSet<>();
 
     public Profile() {}
 
@@ -124,11 +124,11 @@ public class Profile {
         this.deleted = deleted;
     }
 
-    public Set<Discipline> getDiscipline() {
-        return discipline;
-    }
-
-    public void setDiscipline(Set<Discipline> discipline) {
-        this.discipline = discipline;
-    }
+//    public Set<Discipline> getDiscipline() {
+//        return discipline;
+//    }
+//
+//    public void setDiscipline(Set<Discipline> discipline) {
+//        this.discipline = discipline;
+//    }
 }

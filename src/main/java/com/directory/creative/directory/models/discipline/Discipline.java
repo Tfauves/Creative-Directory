@@ -7,15 +7,15 @@ public class Discipline {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private String practice;
-    @OneToOne
-    @JoinColumn(name = "media_type_id", referencedColumnName = "id")
-    private MediaType mediaType;
+
+//    @OneToOne(cascade = CascadeType.ALL)
+//    @JoinColumn(name = "media_type_id", referencedColumnName = "id")
+    private String mediaType;
 
     public Discipline() {}
 
-    public Discipline(String practice, MediaType mediaType) {
-        this.practice = practice;
+    public Discipline(String mediaType) {
+
         this.mediaType = mediaType;
     }
 
@@ -27,20 +27,12 @@ public class Discipline {
         this.id = id;
     }
 
-    public String getPractice() {
-        return practice;
-    }
 
-    public void setPractice(String practice) {
-        this.practice = practice;
-    }
-
-
-    public MediaType getMediaType() {
+    public String getMediaType() {
         return mediaType;
     }
 
-    public void setMediaType(MediaType mediaType) {
+    public void setMediaType(String mediaType) {
         this.mediaType = mediaType;
     }
 }
