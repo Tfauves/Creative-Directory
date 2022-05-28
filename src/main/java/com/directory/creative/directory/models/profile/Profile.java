@@ -1,6 +1,6 @@
 package com.directory.creative.directory.models.profile;
 
-import com.directory.creative.directory.models.discipline.Discipline;
+import com.directory.creative.directory.models.discipline.Media;
 import com.directory.creative.directory.models.auth.User;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
@@ -47,7 +47,7 @@ public class Profile {
             inverseJoinColumns = @JoinColumn(name = "discipline_id")
     )
     @JsonIgnoreProperties("profile")
-    private Set<Discipline> discipline = new HashSet<>();
+    public Set<Media> media = new HashSet<>();
 
     public Profile() {}
 
@@ -124,12 +124,12 @@ public class Profile {
         this.deleted = deleted;
     }
 
-    public Set<Discipline> getDiscipline() {
-        return discipline;
+    public Set<Media> getDiscipline() {
+        return media;
     }
 
-    public void setDiscipline(Set<Discipline> discipline) {
-        this.discipline = discipline;
+    public void setDiscipline(Set<Media> media) {
+        this.media = media;
     }
 
 }

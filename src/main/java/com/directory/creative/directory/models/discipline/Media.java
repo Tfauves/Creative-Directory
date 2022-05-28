@@ -3,16 +3,16 @@ package com.directory.creative.directory.models.discipline;
 import javax.persistence.*;
 
 @Entity
-public class Discipline {
+public class Media {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String name;
     private String type;
 
-    public Discipline() {}
+    public Media() {}
 
-    public Discipline(String name, String type) {
+    public Media(String name, String type) {
         this.name = name;
         this.type = type;
     }

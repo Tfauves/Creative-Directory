@@ -1,34 +1,33 @@
 package com.directory.creative.directory.controllers;
 
 
-import com.directory.creative.directory.models.discipline.Discipline;
-import com.directory.creative.directory.repositories.DisciplineRepository;
+import com.directory.creative.directory.models.discipline.Media;
+import com.directory.creative.directory.repositories.MediaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.server.ResponseStatusException;
 
 import java.util.List;
 import java.util.Optional;
 
 @CrossOrigin
 @RestController
-@RequestMapping("/discipline")
-public class DisciplineController {
+@RequestMapping("/api/media")
+public class MediaController {
 
     @Autowired
-    DisciplineRepository repository;
+    MediaRepository repository;
 
     @GetMapping
     public @ResponseBody
-    List<Discipline> readAll() {
+    List<Media> readAll() {
         return repository.findAll();
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Discipline> readById(@PathVariable Long id) {
-        Optional<Discipline> discipline = repository.findById(id);
+    public ResponseEntity<Media> readById(@PathVariable Long id) {
+        Optional<Media> discipline = repository.findById(id);
 
         if (discipline.isEmpty()) {
             return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
@@ -38,8 +37,8 @@ public class DisciplineController {
     }
 
     @PostMapping
-    public Discipline createDiscipline(@RequestBody Discipline newDiscipline) {
-        return repository.save(newDiscipline);
+    public Media createDiscipline(@RequestBody Media newMedia) {
+        return repository.save(newMedia);
     }
 
     @DeleteMapping("/{id}")
