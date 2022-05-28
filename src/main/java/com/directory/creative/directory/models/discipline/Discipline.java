@@ -7,16 +7,14 @@ public class Discipline {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
-//    @OneToOne(cascade = CascadeType.ALL)
-//    @JoinColumn(name = "media_type_id", referencedColumnName = "id")
-    private String mediaType;
+    private String name;
+    private String type;
 
     public Discipline() {}
 
-    public Discipline(String mediaType) {
-
-        this.mediaType = mediaType;
+    public Discipline(String name, String type) {
+        this.name = name;
+        this.type = type;
     }
 
     public Long getId() {
@@ -28,11 +26,19 @@ public class Discipline {
     }
 
 
-    public String getMediaType() {
-        return mediaType;
+    public String getName() {
+        return name;
     }
 
-    public void setMediaType(String mediaType) {
-        this.mediaType = mediaType;
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
     }
 }
