@@ -37,6 +37,17 @@ public class DisciplineController {
         return new ResponseEntity<>(discipline.get(), HttpStatus.OK);
     }
 
+    @PostMapping
+    public Discipline createDiscipline(@RequestBody Discipline newDiscipline) {
+        return repository.save(newDiscipline);
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<String> destroyDiscipline(@PathVariable Long id) {
+        repository.deleteById(id);
+        return new ResponseEntity<>("Deleted", HttpStatus.OK);
+    }
+
 
 
 }
