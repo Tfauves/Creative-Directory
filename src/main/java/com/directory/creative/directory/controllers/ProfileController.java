@@ -2,7 +2,9 @@ package com.directory.creative.directory.controllers;
 
 
 import com.directory.creative.directory.models.auth.User;
+import com.directory.creative.directory.models.discipline.Media;
 import com.directory.creative.directory.models.profile.Profile;
+import com.directory.creative.directory.repositories.MediaRepository;
 import com.directory.creative.directory.repositories.ProfileRepository;
 import com.directory.creative.directory.service.UserService;
 import org.hibernate.Filter;
@@ -28,6 +30,9 @@ public class ProfileController {
 
     @Autowired
     private EntityManager entityManager;
+
+    @Autowired
+    private MediaRepository mediaRepository;
 
 
     @Autowired
@@ -81,16 +86,30 @@ public class ProfileController {
 
         }
         Profile profile = repository.findByUser_id(currentUser.getId()).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
-
         if (updateData.getFname() != null) profile.setFname(updateData.getFname());
         if (updateData.getLname() != null) profile.setLname(updateData.getLname());
-
         if (updateData.getPhone() != null) profile.setPhone(updateData.getPhone());
         if (updateData.getState() != null) profile.setState(updateData.getState());
         if (updateData.getCity() != null) profile.setCity(updateData.getCity());
 
         return repository.save(profile);
 
+    }
+
+    @PutMapping("/media")
+    public Profile addMedia(@RequestBody List<Media> updates) {
+        User currentUser = userService.getCurrentUser();
+        if(currentUser == null) {
+            return null;
+        }
+
+        Profile profile = repository.findByUser_id(currentUser.getId()).orElseThrow(()-> new ResponseStatusException(HttpStatus.NOT_FOUND));
+        for (Media media : updates) {
+            mediaRepository.save(media);
+        }
+
+        profile.media.addAll(updates);
+        return repository.save(profile);
     }
 
 
