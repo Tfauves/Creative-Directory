@@ -107,7 +107,6 @@ public class ProfileController {
         for (Media media : updates) {
             mediaRepository.save(media);
         }
-
         profile.media.addAll(updates);
         return repository.save(profile);
     }
