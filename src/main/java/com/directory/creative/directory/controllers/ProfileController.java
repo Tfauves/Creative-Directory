@@ -1,6 +1,5 @@
 package com.directory.creative.directory.controllers;
 
-
 import com.directory.creative.directory.models.auth.User;
 import com.directory.creative.directory.models.discipline.Media;
 import com.directory.creative.directory.models.profile.Profile;
@@ -19,7 +18,6 @@ import org.springframework.web.server.ResponseStatusException;
 import javax.persistence.EntityManager;
 import java.util.List;
 
-// TODO: 5/25/2022 need update profile to add discipline
 @CrossOrigin
 @RestController
 @RequestMapping("/api/profile")
