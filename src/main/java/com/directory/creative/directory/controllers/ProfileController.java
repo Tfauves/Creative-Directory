@@ -96,18 +96,17 @@ public class ProfileController {
 
     }
 
-    @PutMapping("/media")
-    public Profile addMedia(@RequestBody List<Media> updates) {
+    @PutMapping("/media/{id}")
+    public Profile addMedia(@PathVariable Long id) {
         User currentUser = userService.getCurrentUser();
         if(currentUser == null) {
             return null;
         }
 
         Profile profile = repository.findByUser_id(currentUser.getId()).orElseThrow(()-> new ResponseStatusException(HttpStatus.NOT_FOUND));
-        for (Media media : updates) {
-            mediaRepository.save(media);
-        }
-        profile.media.addAll(updates);
+        Media newMedia = mediaRepository.findById(id).orElseThrow(()-> new ResponseStatusException(HttpStatus.NOT_FOUND));
+
+        profile.media.add(newMedia);
         return repository.save(profile);
     }
 

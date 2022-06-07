@@ -27,22 +27,22 @@ public class MediaController {
 
     @GetMapping("/{id}")
     public ResponseEntity<Media> readById(@PathVariable Long id) {
-        Optional<Media> discipline = repository.findById(id);
+        Optional<Media> media = repository.findById(id);
 
-        if (discipline.isEmpty()) {
+        if (media.isEmpty()) {
             return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
         }
 
-        return new ResponseEntity<>(discipline.get(), HttpStatus.OK);
+        return new ResponseEntity<>(media.get(), HttpStatus.OK);
     }
 
     @PostMapping
-    public Media createDiscipline(@RequestBody Media newMedia) {
+    public Media createMedia(@RequestBody Media newMedia) {
         return repository.save(newMedia);
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<String> destroyDiscipline(@PathVariable Long id) {
+    public ResponseEntity<String> destroyMedia(@PathVariable Long id) {
         repository.deleteById(id);
         return new ResponseEntity<>("Deleted", HttpStatus.OK);
     }
