@@ -29,6 +29,7 @@ public class Profile {
     private Long id;
     private String fname;
     private String lname;
+    // TODO: 6/6/2022 city state and phone/email could be a contact obj 
     private String city;
     private String state;
     private String phone;
