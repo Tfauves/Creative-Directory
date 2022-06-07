@@ -42,9 +42,9 @@ public class Profile {
 
     @ManyToMany
     @JoinTable(
-            name = "profile_discipline",
+            name = "profile_media",
             joinColumns = @JoinColumn(name = "profile_id"),
-            inverseJoinColumns = @JoinColumn(name = "discipline_id")
+            inverseJoinColumns = @JoinColumn(name = "media_id")
     )
     @JsonIgnoreProperties("profile")
     public Set<Media> media = new HashSet<>();
@@ -84,6 +84,14 @@ public class Profile {
         this.lname = lname;
     }
 
+    public String getCity() {
+        return city;
+    }
+
+    public void setCity(String city) {
+        this.city = city;
+    }
+
     public String getState() {
         return state;
     }
@@ -100,22 +108,6 @@ public class Profile {
         this.phone = phone;
     }
 
-    public User getUser() {
-        return user;
-    }
-
-    public void setUser(User user) {
-        this.user = user;
-    }
-
-    public String getCity() {
-        return city;
-    }
-
-    public void setCity(String city) {
-        this.city = city;
-    }
-
     public Boolean getDeleted() {
         return deleted;
     }
@@ -124,12 +116,11 @@ public class Profile {
         this.deleted = deleted;
     }
 
-    public Set<Media> getDiscipline() {
-        return media;
+    public User getUser() {
+        return user;
     }
 
-    public void setDiscipline(Set<Media> media) {
-        this.media = media;
+    public void setUser(User user) {
+        this.user = user;
     }
-
 }
