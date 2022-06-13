@@ -22,7 +22,7 @@ import java.util.Set;
 //@FilterDef annotation defines the basic requirements that will be used by @Filter annotation
 @FilterDef(name = "deletedProfileFilter", parameters = @ParamDef(name = "isDeleted", type = "boolean"))
 @Filter(name = "deletedProfileFilter", condition = "deleted = :isDeleted")
-
+// TODO: 6/12/2022 refactor profile entity 
 public class Profile {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -40,7 +40,7 @@ public class Profile {
     @JoinColumn(name = "user_id", referencedColumnName = "id")
     @JsonIgnore
     private User user;
-
+    // TODO: 6/12/2022 make media an entity 
     @ManyToMany
     @JoinTable(
             name = "profile_media",
