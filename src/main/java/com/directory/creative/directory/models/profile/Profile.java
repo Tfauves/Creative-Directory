@@ -1,5 +1,7 @@
 package com.directory.creative.directory.models.profile;
 
+
+import com.directory.creative.directory.models.contact.Contact;
 import com.directory.creative.directory.models.discipline.Media;
 import com.directory.creative.directory.models.auth.User;
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -7,6 +9,7 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import org.hibernate.annotations.*;
 
 import javax.persistence.*;
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.Table;
 import java.util.HashSet;
@@ -27,12 +30,7 @@ public class Profile {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private String fname;
-    private String lname;
-    // TODO: 6/6/2022 city state and phone/email could be a contact obj 
-    private String city;
-    private String state;
-    private String phone;
+    private String name;
     //deleted property with the default value set as FALSE
     private Boolean deleted = Boolean.FALSE;
 
@@ -40,6 +38,13 @@ public class Profile {
     @JoinColumn(name = "user_id", referencedColumnName = "id")
     @JsonIgnore
     private User user;
+
+    // TODO: 6/13/2022 create repsoitory and controller and test 
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "contact_info", referencedColumnName = "id")
+    private Contact contact;
+
+
     // TODO: 6/12/2022 make media an entity 
     @ManyToMany
     @JoinTable(
@@ -52,12 +57,11 @@ public class Profile {
 
     public Profile() {}
 
-    public Profile(User user, String fname, String lname, String phone, String city) {
+    public Profile(User user, String name, Contact contact) {
         this.user = user;
-        this.fname = fname;
-        this.lname = lname;
-        this.phone = phone;
-        this.city = city;
+        this.name = name;
+        this.contact = contact;
+
     }
 
 
@@ -69,45 +73,22 @@ public class Profile {
         this.id = id;
     }
 
-    public String getFname() {
-        return fname;
+    public String getName() {
+        return name;
     }
 
-    public void setFname(String fname) {
-        this.fname = fname;
+    public void setName(String name) {
+        this.name = name;
     }
 
-    public String getLname() {
-        return lname;
+    public Contact getContact() {
+        return contact;
     }
 
-    public void setLname(String lname) {
-        this.lname = lname;
+    public void setContact(Contact contact) {
+        this.contact = contact;
     }
 
-    public String getCity() {
-        return city;
-    }
-
-    public void setCity(String city) {
-        this.city = city;
-    }
-
-    public String getState() {
-        return state;
-    }
-
-    public void setState(String state) {
-        this.state = state;
-    }
-
-    public String getPhone() {
-        return phone;
-    }
-
-    public void setPhone(String phone) {
-        this.phone = phone;
-    }
 
     public Boolean getDeleted() {
         return deleted;
