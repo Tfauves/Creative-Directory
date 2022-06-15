@@ -1,5 +1,6 @@
-package com.directory.creative.directory.models.discipline;
+package com.directory.creative.directory.models.media;
 
+import com.directory.creative.directory.models.profile.Profile;
 import javax.persistence.*;
 
 @Entity
@@ -9,6 +10,9 @@ public class Media {
     private Long id;
     private String name;
     private String type;
+
+    @OneToOne
+    private Profile profile;
 
     public Media() {}
 
@@ -25,6 +29,13 @@ public class Media {
         this.id = id;
     }
 
+    public Profile getProfile() {
+        return profile;
+    }
+
+    public void setProfile(Profile profile) {
+        this.profile = profile;
+    }
 
     public String getName() {
         return name;

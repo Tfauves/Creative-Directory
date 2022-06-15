@@ -1,13 +1,11 @@
 package com.directory.creative.directory.controllers;
 
-
-import com.directory.creative.directory.models.discipline.Media;
+import com.directory.creative.directory.models.media.Media;
 import com.directory.creative.directory.repositories.MediaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
 import java.util.List;
 import java.util.Optional;
 
@@ -15,7 +13,7 @@ import java.util.Optional;
 @RestController
 @RequestMapping("/api/media")
 public class MediaController {
-
+    // TODO: 6/15/2022 new profile media persistence needs testing 
     @Autowired
     MediaRepository repository;
 
