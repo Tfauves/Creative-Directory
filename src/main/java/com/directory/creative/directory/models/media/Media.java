@@ -19,6 +19,7 @@ public class Media {
     public Media(String name, String type) {
         this.name = name;
         this.type = type;
+
     }
 
     public Long getId() {
