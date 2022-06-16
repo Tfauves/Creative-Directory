@@ -48,7 +48,6 @@ public class Profile {
         this.user = user;
         this.name = name;
         this.contact = contact;
-
     }
 
     public Long getId() {

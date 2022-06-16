@@ -46,7 +46,7 @@ public class ProfileController {
         if (currentUser == null) {
             return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
         }
-        Media media = mediaRepository.save(newProfile.getMedia());
+        Media media = mediaRepository.findById(newProfile.getMedia().getId()).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
         Contact contact = contactRepository.save(newProfile.getContact());
 
         newProfile.setUser(currentUser);
