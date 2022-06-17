@@ -11,8 +11,6 @@ public class Media {
     private String name;
     private String type;
 
-    @OneToOne
-    private Profile profile;
 
     public Media() {}
 
@@ -28,14 +26,6 @@ public class Media {
 
     public void setId(Long id) {
         this.id = id;
-    }
-
-    public Profile getProfile() {
-        return profile;
-    }
-
-    public void setProfile(Profile profile) {
-        this.profile = profile;
     }
 
     public String getName() {

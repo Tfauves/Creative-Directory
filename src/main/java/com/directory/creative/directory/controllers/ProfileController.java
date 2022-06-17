@@ -39,7 +39,6 @@ public class ProfileController {
     @Autowired
     UserService userService;
 
-    // TODO: 6/14/2022 BUG: saving ref to profile in media returns null
     @PostMapping
     public ResponseEntity<Profile> createProfile(@RequestBody Profile newProfile) {
         User currentUser = userService.getCurrentUser();
@@ -52,6 +51,7 @@ public class ProfileController {
         newProfile.setUser(currentUser);
         newProfile.setMedia(media);
         newProfile.setContact(contact);
+
 
 
         return new ResponseEntity<>(repository.save(newProfile), HttpStatus.CREATED);

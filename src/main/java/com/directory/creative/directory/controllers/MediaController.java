@@ -13,7 +13,7 @@ import java.util.Optional;
 @RestController
 @RequestMapping("/api/media")
 public class MediaController {
-    // TODO: 6/15/2022 new profile media persistence needs testing 
+
     @Autowired
     MediaRepository repository;
 
