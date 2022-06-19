@@ -4,6 +4,7 @@ import com.directory.creative.directory.models.contact.Contact;
 import com.directory.creative.directory.models.media.Media;
 import com.directory.creative.directory.models.auth.User;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import org.hibernate.annotations.*;
 import javax.persistence.*;
 import javax.persistence.CascadeType;
@@ -31,6 +32,10 @@ public class Profile {
     private Boolean deleted = Boolean.FALSE;
 
     @OneToOne
+    @JsonIgnoreProperties("id")
+    private ProfileImg proImg;
+
+    @OneToOne
     @JoinColumn(name = "user_id", referencedColumnName = "id")
     @JsonIgnore
     private User user;
@@ -44,10 +49,11 @@ public class Profile {
 
     public Profile() {}
 
-    public Profile(User user, String name, Contact contact) {
+    public Profile(User user, ProfileImg proImg, String name, Contact contact) {
         this.user = user;
         this.name = name;
         this.contact = contact;
+        this.proImg = proImg;
     }
 
     public Long getId() {
@@ -96,5 +102,13 @@ public class Profile {
 
     public void setMedia(Media media) {
         this.media = media;
+    }
+
+    public ProfileImg getProImg() {
+        return proImg;
+    }
+
+    public void setProImg(ProfileImg proImg) {
+        this.proImg = proImg;
     }
 }

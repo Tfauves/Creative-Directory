@@ -4,8 +4,10 @@ import com.directory.creative.directory.models.auth.User;
 import com.directory.creative.directory.models.contact.Contact;
 import com.directory.creative.directory.models.media.Media;
 import com.directory.creative.directory.models.profile.Profile;
+import com.directory.creative.directory.models.profile.ProfileImg;
 import com.directory.creative.directory.repositories.ContactRepository;
 import com.directory.creative.directory.repositories.MediaRepository;
+import com.directory.creative.directory.repositories.ProfileImgRepository;
 import com.directory.creative.directory.repositories.ProfileRepository;
 import com.directory.creative.directory.service.UserService;
 import org.hibernate.Filter;
@@ -37,6 +39,9 @@ public class ProfileController {
     private ContactRepository contactRepository;
 
     @Autowired
+    private ProfileImgRepository profileImgRepository;
+
+    @Autowired
     UserService userService;
 
     @PostMapping
@@ -48,6 +53,11 @@ public class ProfileController {
         Media media = mediaRepository.findById(newProfile.getMedia().getId()).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
         Contact contact = contactRepository.save(newProfile.getContact());
 
+        ProfileImg img = newProfile.getProImg();
+        img.setUrl(newProfile.getProImg().getUrl());
+
+        profileImgRepository.save(img);
+        newProfile.setProImg(img);
         newProfile.setUser(currentUser);
         newProfile.setMedia(media);
         newProfile.setContact(contact);
@@ -62,7 +72,7 @@ public class ProfileController {
     public @ResponseBody List<Profile> findAll() {
         return repository.findAll();
     }
-
+// TODO: 6/19/2022 get/delete/edit img mapping 
 
     @GetMapping
     public Iterable<Profile> readAllProfile(boolean isDeleted) {
