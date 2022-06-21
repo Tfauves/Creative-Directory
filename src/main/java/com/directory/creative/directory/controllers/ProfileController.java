@@ -62,8 +62,6 @@ public class ProfileController {
         newProfile.setMedia(media);
         newProfile.setContact(contact);
 
-
-
         return new ResponseEntity<>(repository.save(newProfile), HttpStatus.CREATED);
     }
 
@@ -82,6 +80,11 @@ public class ProfileController {
         Iterable<Profile> profiles = repository.findAll();
         session.disableFilter("deletedProfileFilter");
         return profiles;
+    }
+
+    @GetMapping("/media/{mediaId}")
+    public @ResponseBody List<Profile> findAllByMedia_id(@PathVariable Long mediaId) {
+        return repository.findByMedia_id(mediaId);
     }
 
     @GetMapping("/self")

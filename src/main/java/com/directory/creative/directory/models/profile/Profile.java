@@ -45,6 +45,7 @@ public class Profile {
     private Contact contact;
 
     @OneToOne
+    @JoinColumn(name = "media_id", referencedColumnName = "id")
     private Media media;
 
     public Profile() {}
