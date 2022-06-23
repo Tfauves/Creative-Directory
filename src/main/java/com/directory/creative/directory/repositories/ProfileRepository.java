@@ -7,7 +7,6 @@ import org.springframework.data.jpa.repository.Query;
 import java.util.List;
 import java.util.Optional;
 
-// TODO: 6/21/2022 test find profile by media type ???
 public interface ProfileRepository extends JpaRepository<Profile, Long> {
     Optional<Profile> findByUser_id(Long id);
 

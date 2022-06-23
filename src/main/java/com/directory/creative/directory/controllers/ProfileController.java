@@ -110,7 +110,7 @@ public class ProfileController {
 
     }
 
-    @PutMapping()
+    @PutMapping
     public @ResponseBody
     Profile updateProfile(@RequestBody Profile updateData) {
         User currentUser = userService.getCurrentUser();
@@ -120,6 +120,30 @@ public class ProfileController {
         }
         Profile profile = repository.findByUser_id(currentUser.getId()).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
         if (updateData.getName() != null) profile.setName(updateData.getName());
+        if (updateData.getMedia() != null) {
+            Media updatedMedia = mediaRepository.findById(updateData.getMedia().getId()).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
+            profile.setMedia(updatedMedia);
+        }
+
+        return repository.save(profile);
+
+    }
+
+    // TODO: 6/23/2022 test photo updates proper 
+    @PutMapping("/pic")
+    public Profile updateProfPic(@RequestBody Profile updateData) {
+        User currentUser = userService.getCurrentUser();
+        if (currentUser == null) {
+            return null;
+        }
+
+        Profile profile = repository.findByUser_id(currentUser.getId()).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
+        if (profile.getProImg() != null) {
+            ProfileImg newPic = updateData.getProImg();
+            profile.setProImg(newPic);
+            profileImgRepository.save(newPic);
+            return profile;
+        }
 
         return repository.save(profile);
 
