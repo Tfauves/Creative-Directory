@@ -70,7 +70,7 @@ public class ProfileController {
     public @ResponseBody List<Profile> findAll() {
         return repository.findAll();
     }
-// TODO: 6/19/2022 get/delete/edit img mapping 
+
 
     @GetMapping
     public Iterable<Profile> readAllProfile(boolean isDeleted) {
@@ -129,7 +129,7 @@ public class ProfileController {
 
     }
 
-    // TODO: 6/23/2022 test photo updates proper 
+    // TODO: 6/29/2022 test photo update 
     @PutMapping("/pic")
     public Profile updateProfPic(@RequestBody Profile updateData) {
         User currentUser = userService.getCurrentUser();
