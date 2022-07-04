@@ -1,7 +1,6 @@
 package com.directory.creative.directory.controllers;
 
 import com.directory.creative.directory.models.auth.User;
-import com.directory.creative.directory.models.contact.Contact;
 import com.directory.creative.directory.models.media.Media;
 import com.directory.creative.directory.models.profile.Profile;
 import com.directory.creative.directory.models.profile.ProfileImg;
@@ -47,23 +46,33 @@ public class ProfileController {
     @PostMapping
     public ResponseEntity<Profile> createProfile(@RequestBody Profile newProfile) {
         User currentUser = userService.getCurrentUser();
-        if (currentUser == null) {
+        if(currentUser == null) {
             return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
         }
-        Media media = mediaRepository.findById(newProfile.getMedia().getId()).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
-        Contact contact = contactRepository.save(newProfile.getContact());
-
-        ProfileImg img = newProfile.getProImg();
-        img.setUrl(newProfile.getProImg().getUrl());
-
-        profileImgRepository.save(img);
-        newProfile.setProImg(img);
         newProfile.setUser(currentUser);
-        newProfile.setMedia(media);
-        newProfile.setContact(contact);
-
         return new ResponseEntity<>(repository.save(newProfile), HttpStatus.CREATED);
     }
+
+//    @PostMapping
+//    public ResponseEntity<Profile> createProfile(@RequestBody Profile newProfile) {
+//        User currentUser = userService.getCurrentUser();
+//        if (currentUser == null) {
+//            return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
+//        }
+//        Media media = mediaRepository.findById(newProfile.getMedia().getId()).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
+//        Contact contact = contactRepository.save(newProfile.getContact());
+//
+//        ProfileImg img = newProfile.getProImg();
+//        img.setUrl(newProfile.getProImg().getUrl());
+//
+//        profileImgRepository.save(img);
+//        newProfile.setProImg(img);
+//        newProfile.setUser(currentUser);
+//        newProfile.setMedia(media);
+//        newProfile.setContact(contact);
+//
+//        return new ResponseEntity<>(repository.save(newProfile), HttpStatus.CREATED);
+//    }
 
     @GetMapping("/all")
     @PreAuthorize("hasRole('ADMIN')")
@@ -119,7 +128,7 @@ public class ProfileController {
 
         }
         Profile profile = repository.findByUser_id(currentUser.getId()).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
-        if (updateData.getName() != null) profile.setName(updateData.getName());
+        if (updateData.getFname() != null) profile.setFname(updateData.getFname());
         if (updateData.getMedia() != null) {
             Media updatedMedia = mediaRepository.findById(updateData.getMedia().getId()).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
             profile.setMedia(updatedMedia);

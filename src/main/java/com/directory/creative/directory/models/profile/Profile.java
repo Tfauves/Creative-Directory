@@ -27,7 +27,7 @@ public class Profile {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private String name;
+    private String fname;
     //deleted property with the default value set as FALSE
     private Boolean deleted = Boolean.FALSE;
 
@@ -50,9 +50,9 @@ public class Profile {
 
     public Profile() {}
 
-    public Profile(User user, ProfileImg proImg, String name, Contact contact) {
+    public Profile(User user, ProfileImg proImg, String fname, Contact contact) {
         this.user = user;
-        this.name = name;
+        this.fname = fname;
         this.contact = contact;
         this.proImg = proImg;
     }
@@ -65,12 +65,12 @@ public class Profile {
         this.id = id;
     }
 
-    public String getName() {
-        return name;
+    public String getFname() {
+        return fname;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setFname(String fname) {
+        this.fname = fname;
     }
 
     public Contact getContact() {
