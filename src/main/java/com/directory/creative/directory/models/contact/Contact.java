@@ -5,7 +5,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
-
+// TODO: 7/30/2022 how to create on frontend and attach to profile 
 @Entity
 public class Contact {
     @Id

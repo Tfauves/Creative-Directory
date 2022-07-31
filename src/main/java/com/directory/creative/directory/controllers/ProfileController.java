@@ -1,6 +1,7 @@
 package com.directory.creative.directory.controllers;
 
 import com.directory.creative.directory.models.auth.User;
+import com.directory.creative.directory.models.contact.Contact;
 import com.directory.creative.directory.models.media.Media;
 import com.directory.creative.directory.models.profile.Profile;
 import com.directory.creative.directory.models.profile.ProfileImg;
@@ -53,26 +54,7 @@ public class ProfileController {
         return new ResponseEntity<>(repository.save(newProfile), HttpStatus.CREATED);
     }
 
-//    @PostMapping
-//    public ResponseEntity<Profile> createProfile(@RequestBody Profile newProfile) {
-//        User currentUser = userService.getCurrentUser();
-//        if (currentUser == null) {
-//            return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
-//        }
-//        Media media = mediaRepository.findById(newProfile.getMedia().getId()).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
-//        Contact contact = contactRepository.save(newProfile.getContact());
-//
-//        ProfileImg img = newProfile.getProImg();
-//        img.setUrl(newProfile.getProImg().getUrl());
-//
-//        profileImgRepository.save(img);
-//        newProfile.setProImg(img);
-//        newProfile.setUser(currentUser);
-//        newProfile.setMedia(media);
-//        newProfile.setContact(contact);
-//
-//        return new ResponseEntity<>(repository.save(newProfile), HttpStatus.CREATED);
-//    }
+
 
     @GetMapping("/all")
     @PreAuthorize("hasRole('ADMIN')")
@@ -91,6 +73,7 @@ public class ProfileController {
         return profiles;
     }
 
+    // TODO: 7/30/2022 need to look at media obj 
     @GetMapping("/media/{mediaId}")
     public @ResponseBody List<Profile> findAllByMedia_id(@PathVariable Long mediaId) {
         return repository.findByMedia_id(mediaId);
@@ -119,6 +102,7 @@ public class ProfileController {
 
     }
 
+    // TODO: 7/30/2022  create new profile needs refactor 
     @PutMapping
     public @ResponseBody
     Profile updateProfile(@RequestBody Profile updateData) {
@@ -137,8 +121,7 @@ public class ProfileController {
         return repository.save(profile);
 
     }
-
-    // TODO: 6/29/2022 test photo update 
+    
     @PutMapping("/pic")
     public Profile updateProfPic(@RequestBody Profile updateData) {
         User currentUser = userService.getCurrentUser();
