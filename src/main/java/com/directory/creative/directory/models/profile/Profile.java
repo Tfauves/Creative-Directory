@@ -1,6 +1,5 @@
 package com.directory.creative.directory.models.profile;
 
-import com.directory.creative.directory.models.contact.Contact;
 import com.directory.creative.directory.models.media.Media;
 import com.directory.creative.directory.models.auth.User;
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -40,20 +39,15 @@ public class Profile {
     @JsonIgnore
     private User user;
 
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "contact_info", referencedColumnName = "id")
-    private Contact contact;
-
     @OneToOne
     @JoinColumn(name = "media_id", referencedColumnName = "id")
     private Media media;
 
     public Profile() {}
 
-    public Profile(User user, ProfileImg proImg, String fname, Contact contact) {
+    public Profile(User user, ProfileImg proImg, String fname) {
         this.user = user;
         this.fname = fname;
-        this.contact = contact;
         this.proImg = proImg;
     }
 
@@ -71,14 +65,6 @@ public class Profile {
 
     public void setFname(String fname) {
         this.fname = fname;
-    }
-
-    public Contact getContact() {
-        return contact;
-    }
-
-    public void setContact(Contact contact) {
-        this.contact = contact;
     }
 
     public Boolean getDeleted() {

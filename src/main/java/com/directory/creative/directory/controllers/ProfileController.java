@@ -1,11 +1,9 @@
 package com.directory.creative.directory.controllers;
 
 import com.directory.creative.directory.models.auth.User;
-import com.directory.creative.directory.models.contact.Contact;
 import com.directory.creative.directory.models.media.Media;
 import com.directory.creative.directory.models.profile.Profile;
 import com.directory.creative.directory.models.profile.ProfileImg;
-import com.directory.creative.directory.repositories.ContactRepository;
 import com.directory.creative.directory.repositories.MediaRepository;
 import com.directory.creative.directory.repositories.ProfileImgRepository;
 import com.directory.creative.directory.repositories.ProfileRepository;
@@ -35,8 +33,6 @@ public class ProfileController {
     @Autowired
     private MediaRepository mediaRepository;
 
-    @Autowired
-    private ContactRepository contactRepository;
 
     @Autowired
     private ProfileImgRepository profileImgRepository;
@@ -50,6 +46,7 @@ public class ProfileController {
         if(currentUser == null) {
             return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
         }
+
         newProfile.setUser(currentUser);
         return new ResponseEntity<>(repository.save(newProfile), HttpStatus.CREATED);
     }
