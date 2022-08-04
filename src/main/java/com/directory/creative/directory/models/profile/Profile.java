@@ -6,7 +6,6 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import org.hibernate.annotations.*;
 import javax.persistence.*;
-import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.Table;
 
@@ -27,6 +26,10 @@ public class Profile {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String fname;
+    private String lname;
+    private String businessName;
+    private String contactEmail;
+    
     //deleted property with the default value set as FALSE
     private Boolean deleted = Boolean.FALSE;
 
@@ -45,10 +48,38 @@ public class Profile {
 
     public Profile() {}
 
-    public Profile(User user, ProfileImg proImg, String fname) {
+    public Profile(User user, String fname, String lname, String businessName, String contactEmail, ProfileImg proImg) {
         this.user = user;
         this.fname = fname;
+        this.lname = lname;
+        this.businessName = businessName;
+        this. contactEmail = contactEmail;
         this.proImg = proImg;
+    }
+
+
+    public String getLname() {
+        return lname;
+    }
+
+    public void setLname(String lname) {
+        this.lname = lname;
+    }
+
+    public String getBusinessName() {
+        return businessName;
+    }
+
+    public void setBusinessName(String businessName) {
+        this.businessName = businessName;
+    }
+
+    public String getContactEmail() {
+        return contactEmail;
+    }
+
+    public void setContactEmail(String contactEmail) {
+        this.contactEmail = contactEmail;
     }
 
     public Long getId() {

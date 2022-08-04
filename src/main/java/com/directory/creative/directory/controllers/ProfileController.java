@@ -70,7 +70,7 @@ public class ProfileController {
         return profiles;
     }
 
-    // TODO: 7/30/2022 need to look at media obj 
+
     @GetMapping("/media/{mediaId}")
     public @ResponseBody List<Profile> findAllByMedia_id(@PathVariable Long mediaId) {
         return repository.findByMedia_id(mediaId);
@@ -99,7 +99,6 @@ public class ProfileController {
 
     }
 
-    // TODO: 7/30/2022  create new profile needs refactor 
     @PutMapping
     public @ResponseBody
     Profile updateProfile(@RequestBody Profile updateData) {
@@ -110,9 +109,18 @@ public class ProfileController {
         }
         Profile profile = repository.findByUser_id(currentUser.getId()).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
         if (updateData.getFname() != null) profile.setFname(updateData.getFname());
+        if (updateData.getLname() != null) profile.setLname(updateData.getLname());
+        if (updateData.getBusinessName() != null) profile.setBusinessName(updateData.getBusinessName());
+        if (updateData.getContactEmail() != null) profile.setContactEmail(updateData.getContactEmail());
         if (updateData.getMedia() != null) {
             Media updatedMedia = mediaRepository.findById(updateData.getMedia().getId()).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
             profile.setMedia(updatedMedia);
+        }
+
+        if (updateData.getProImg().getUrl() != null) {
+            ProfileImg newImg = updateData.getProImg();
+            profileImgRepository.save(newImg);
+            profile.setProImg(newImg);
         }
 
         return repository.save(profile);
@@ -137,21 +145,6 @@ public class ProfileController {
         return repository.save(profile);
 
     }
-
-//    @PutMapping("/media/{id}")
-//    public Profile addMedia(@PathVariable Long id) {
-//        User currentUser = userService.getCurrentUser();
-//        if(currentUser == null) {
-//            return null;
-//        }
-//
-//        Profile profile = repository.findByUser_id(currentUser.getId()).orElseThrow(()-> new ResponseStatusException(HttpStatus.NOT_FOUND));
-//        Media newMedia = mediaRepository.findById(id).orElseThrow(()-> new ResponseStatusException(HttpStatus.NOT_FOUND));
-//
-//        profile.media.add(newMedia);
-//        return repository.save(profile);
-//    }
-
 
     @DeleteMapping("{id}")
     public ResponseEntity<String> deleteProfile(@PathVariable Long id) {
