@@ -25,7 +25,7 @@ import java.util.List;
 public class ProfileController {
 
     @Autowired
-    ProfileRepository repository;
+    private ProfileRepository repository;
 
     @Autowired
     private EntityManager entityManager;
@@ -38,7 +38,7 @@ public class ProfileController {
     private ProfileImgRepository profileImgRepository;
 
     @Autowired
-    UserService userService;
+    private UserService userService;
 
     @PostMapping
     public ResponseEntity<Profile> createProfile(@RequestBody Profile newProfile) {
