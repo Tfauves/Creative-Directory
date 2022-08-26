@@ -107,6 +107,7 @@ public class ProfileController {
             return null;
 
         }
+
         Profile profile = repository.findByUser_id(currentUser.getId()).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
         if (updateData.getFname() != null) profile.setFname(updateData.getFname());
         if (updateData.getLname() != null) profile.setLname(updateData.getLname());

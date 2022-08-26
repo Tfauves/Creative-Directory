@@ -20,7 +20,7 @@ public class ShowSpaceController {
     private ShowSpaceRepository showSpaceRepository;
 
     @PostMapping
-    @PreAuthorize("hasRole('ADMIN')")
+
     public ResponseEntity<ShowSpace> createShowSpace(@RequestBody ShowSpace newShowSpace) {
 
         return new ResponseEntity<>(showSpaceRepository.save(newShowSpace), HttpStatus.CREATED);
