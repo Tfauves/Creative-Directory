@@ -1,0 +1,74 @@
+outline
+Creative directory
+
+todo refactor profile
+Artists:
+First name
+Last name
+Business name
+Home address
+Business address
+Phone
+Business phone
+Website
+Social
+
+todo refactor media
+{Dicipline}
+{press/statements}
+{gallery}
+
+Discipline:
+Practice
+[all, multi-disciplinary, museums, design,  theater, living collections, visual arts, literary arts, history, folk arts, music, media arts, arts education, dance, other
+
+todo nice to have future features
+Press/statements:
+Artist Statement
+Links to news articles
+
+Gallery
+Sample images
+sound
+Video
+
+Admin login to enter information
+
+File read capabilities CSV
+
+Announcements on the public-facing page
+
+
+
+
+
+
+
+users can sign up, log in and create profile
+admin can create medias
+profiles can be updated and media added by id
+
+todo update profile pic has issue
+
+
+
+todo
+Artist asset
+this database will hold listings of buildings and locations that are available for either rent or as gallery space
+
+asset{}
+type studio, gallery, both
+address
+contact info
+square footage available
+
+todo
+The announcements feature allows for artist users to file forms for announcements to be reviewed by the admin.
+Admin Alerts: looks for members' names or business names to help maintain an accurate member database and up to date with active members.
+
+Announcement{}
+Artist{}
+text
+links[
+URL:
+]

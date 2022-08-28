@@ -118,11 +118,11 @@ public class ProfileController {
             profile.setMedia(updatedMedia);
         }
 
-        if (updateData.getProImg().getUrl() != null) {
-            ProfileImg newImg = updateData.getProImg();
-            profileImgRepository.save(newImg);
-            profile.setProImg(newImg);
-        }
+//        if (updateData.getProImg().getUrl() != null) {
+//            ProfileImg newImg = updateData.getProImg();
+//            profileImgRepository.save(newImg);
+//            profile.setProImg(newImg);
+//        }
 
         return repository.save(profile);
 
