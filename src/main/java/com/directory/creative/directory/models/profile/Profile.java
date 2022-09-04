@@ -28,7 +28,12 @@ public class Profile {
     private String fname;
     private String lname;
     private String businessName;
-    private String contactEmail;
+    private String homeAddress;
+    private String phone;
+    private String businessPhone;
+    private String website;
+    private String email;
+    private String social;
     
     //deleted property with the default value set as FALSE
     private Boolean deleted = Boolean.FALSE;
@@ -48,15 +53,21 @@ public class Profile {
 
     public Profile() {}
 
-    public Profile(User user, String fname, String lname, String businessName, String contactEmail, ProfileImg proImg) {
-        this.user = user;
+    public Profile(String fname, String lname, String businessName, String homeAddress, String phone, String businessPhone, String website, String email, String social, Boolean deleted, ProfileImg proImg, User user, Media media) {
         this.fname = fname;
         this.lname = lname;
         this.businessName = businessName;
-        this. contactEmail = contactEmail;
+        this.homeAddress = homeAddress;
+        this.phone = phone;
+        this.businessPhone = businessPhone;
+        this.website = website;
+        this.email = email;
+        this.social = social;
+        this.deleted = deleted;
         this.proImg = proImg;
+        this.user = user;
+        this.media = media;
     }
-
 
     public String getLname() {
         return lname;
@@ -74,12 +85,52 @@ public class Profile {
         this.businessName = businessName;
     }
 
-    public String getContactEmail() {
-        return contactEmail;
+    public String getHomeAddress() {
+        return homeAddress;
     }
 
-    public void setContactEmail(String contactEmail) {
-        this.contactEmail = contactEmail;
+    public void setHomeAddress(String homeAddress) {
+        this.homeAddress = homeAddress;
+    }
+
+    public String getPhone() {
+        return phone;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone;
+    }
+
+    public String getBusinessPhone() {
+        return businessPhone;
+    }
+
+    public void setBusinessPhone(String businessPhone) {
+        this.businessPhone = businessPhone;
+    }
+
+    public String getWebsite() {
+        return website;
+    }
+
+    public void setWebsite(String website) {
+        this.website = website;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getSocial() {
+        return social;
+    }
+
+    public void setSocial(String social) {
+        this.social = social;
     }
 
     public Long getId() {

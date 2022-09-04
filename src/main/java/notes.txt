@@ -1,7 +1,7 @@
 outline
 Creative directory
 
-todo refactor profile
+todo test refactored profile
 Artists:
 First name
 Last name
