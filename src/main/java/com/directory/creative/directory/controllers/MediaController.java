@@ -1,6 +1,6 @@
 package com.directory.creative.directory.controllers;
 
-import com.directory.creative.directory.models.media.Media;
+import com.directory.creative.directory.models.media.Discipline;
 import com.directory.creative.directory.repositories.MediaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -19,13 +19,13 @@ public class MediaController {
 
     @GetMapping
     public @ResponseBody
-    List<Media> readAll() {
+    List<Discipline> readAll() {
         return repository.findAll();
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Media> readById(@PathVariable Long id) {
-        Optional<Media> media = repository.findById(id);
+    public ResponseEntity<Discipline> readById(@PathVariable Long id) {
+        Optional<Discipline> media = repository.findById(id);
 
         if (media.isEmpty()) {
             return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
@@ -35,8 +35,8 @@ public class MediaController {
     }
 
     @PostMapping
-    public Media createMedia(@RequestBody Media newMedia) {
-        return repository.save(newMedia);
+    public Discipline createMedia(@RequestBody Discipline newDiscipline) {
+        return repository.save(newDiscipline);
     }
 
     @DeleteMapping("/{id}")

@@ -1,6 +1,6 @@
 package com.directory.creative.directory.models.profile;
 
-import com.directory.creative.directory.models.media.Media;
+import com.directory.creative.directory.models.media.Discipline;
 import com.directory.creative.directory.models.auth.User;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
@@ -49,11 +49,11 @@ public class Profile {
 
     @OneToOne
     @JoinColumn(name = "media_id", referencedColumnName = "id")
-    private Media media;
+    private Discipline discipline;
 
     public Profile() {}
 
-    public Profile(String fname, String lname, String businessName, String homeAddress, String phone, String businessPhone, String website, String email, String social, Boolean deleted, ProfileImg proImg, User user, Media media) {
+    public Profile(String fname, String lname, String businessName, String homeAddress, String phone, String businessPhone, String website, String email, String social, Boolean deleted, ProfileImg proImg, User user, Discipline discipline) {
         this.fname = fname;
         this.lname = lname;
         this.businessName = businessName;
@@ -66,7 +66,7 @@ public class Profile {
         this.deleted = deleted;
         this.proImg = proImg;
         this.user = user;
-        this.media = media;
+        this.discipline = discipline;
     }
 
     public String getLname() {
@@ -165,12 +165,12 @@ public class Profile {
         this.user = user;
     }
 
-    public Media getMedia() {
-        return media;
+    public Discipline getMedia() {
+        return discipline;
     }
 
-    public void setMedia(Media media) {
-        this.media = media;
+    public void setMedia(Discipline discipline) {
+        this.discipline = discipline;
     }
 
     public ProfileImg getProImg() {

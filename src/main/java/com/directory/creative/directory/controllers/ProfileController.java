@@ -1,7 +1,7 @@
 package com.directory.creative.directory.controllers;
 
 import com.directory.creative.directory.models.auth.User;
-import com.directory.creative.directory.models.media.Media;
+import com.directory.creative.directory.models.media.Discipline;
 import com.directory.creative.directory.models.profile.Profile;
 import com.directory.creative.directory.models.profile.ProfileImg;
 import com.directory.creative.directory.repositories.MediaRepository;
@@ -99,6 +99,7 @@ public class ProfileController {
 
     }
 
+    // TODO: 9/4/2022 refactor to work with changes to profile this is part of issue with img 
     @PutMapping
     public @ResponseBody
     Profile updateProfile(@RequestBody Profile updateData) {
@@ -112,10 +113,9 @@ public class ProfileController {
         if (updateData.getFname() != null) profile.setFname(updateData.getFname());
         if (updateData.getLname() != null) profile.setLname(updateData.getLname());
         if (updateData.getBusinessName() != null) profile.setBusinessName(updateData.getBusinessName());
-        if (updateData.getContactEmail() != null) profile.setContactEmail(updateData.getContactEmail());
         if (updateData.getMedia() != null) {
-            Media updatedMedia = mediaRepository.findById(updateData.getMedia().getId()).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
-            profile.setMedia(updatedMedia);
+            Discipline updatedDiscipline = mediaRepository.findById(updateData.getMedia().getId()).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
+            profile.setMedia(updatedDiscipline);
         }
 
 //        if (updateData.getProImg().getUrl() != null) {

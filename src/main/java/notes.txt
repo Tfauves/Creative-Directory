@@ -1,7 +1,6 @@
 outline
 Creative directory
-
-todo test refactored profile
+todo test and add discipline to profile
 Artists:
 First name
 Last name
@@ -13,14 +12,14 @@ Business phone
 Website
 Social
 
-todo refactor media
 {Dicipline}
 {press/statements}
 {gallery}
 
 Discipline:
 Practice
-[all, multi-disciplinary, museums, design,  theater, living collections, visual arts, literary arts, history, folk arts, music, media arts, arts education, dance, other
+todo test and add practice to db
+[all, multi-disciplinary, museums, design,  theater, living collections, visual arts, literary arts, history, folk arts, music, discipline arts, arts education, dance, other
 
 todo nice to have future features
 Press/statements:
@@ -46,7 +45,7 @@ Announcements on the public-facing page
 
 users can sign up, log in and create profile
 admin can create medias
-profiles can be updated and media added by id
+profiles can be updated and discipline added by id
 
 todo update profile pic has issue
 
