@@ -5,6 +5,7 @@ import com.directory.creative.directory.repositories.MediaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import java.util.List;
 import java.util.Optional;
@@ -35,11 +36,13 @@ public class MediaController {
     }
 
     @PostMapping
+    @PreAuthorize("hasRole('ADMIN')")
     public Discipline createMedia(@RequestBody Discipline newDiscipline) {
         return repository.save(newDiscipline);
     }
 
     @DeleteMapping("/{id}")
+    @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<String> destroyMedia(@PathVariable Long id) {
         repository.deleteById(id);
         return new ResponseEntity<>("Deleted", HttpStatus.OK);

@@ -129,6 +129,18 @@ public class ProfileController {
 
     }
 
+    @PutMapping("/practice")
+    public Profile updateMedia(@RequestBody Profile mediaUpdates) {
+        User currentUser = userService.getCurrentUser();
+        if(currentUser == null) {
+            return null;
+        }
+        Profile profile = repository.findByUser_id(currentUser.getId()).orElseThrow(()-> new ResponseStatusException(HttpStatus.NOT_FOUND));
+
+        return repository.save(profile);
+
+    }
+
     @PutMapping("/pic")
     public Profile updateProfilePic(@RequestBody Profile pro) {
 

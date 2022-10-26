@@ -10,5 +10,9 @@ read self
 create user profile
 add profile pic to profile
 
+create discipline types admin only
+read all discipline types
+delete discipline admin only
+
 todo create media and add to profile
 
