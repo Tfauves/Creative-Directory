@@ -13,6 +13,7 @@ add profile pic to profile
 create discipline types admin only
 read all discipline types
 delete discipline admin only
+add discipline to profile by id
 
-todo create media and add to profile
+
 

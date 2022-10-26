@@ -48,6 +48,4 @@ public class MediaController {
         return new ResponseEntity<>("Deleted", HttpStatus.OK);
     }
 
-
-
 }

@@ -130,13 +130,13 @@ public class ProfileController {
     }
 
     @PutMapping("/practice")
-    public Profile updateMedia(@RequestBody Profile mediaUpdates) {
+    public Profile updateMedia(@RequestBody Discipline media) {
         User currentUser = userService.getCurrentUser();
         if(currentUser == null) {
             return null;
         }
         Profile profile = repository.findByUser_id(currentUser.getId()).orElseThrow(()-> new ResponseStatusException(HttpStatus.NOT_FOUND));
-
+        profile.setMedia(media);
         return repository.save(profile);
 
     }
