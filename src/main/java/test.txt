@@ -3,9 +3,9 @@ Tested and Working
 auth signup,
 auth signin,
 
-user created profile with all fields except for media obj and img
+user created profile with all fields
 read all profiles included deleted profiles admin only
-read no deleted profiles as user or admin
+read non deleted profiles as user or admin
 read self
 create user profile
 add profile pic to profile
@@ -14,6 +14,8 @@ create discipline types admin only
 read all discipline types
 delete discipline admin only
 add discipline to profile by id
+
+todo updating user profile fields
 
 
 
