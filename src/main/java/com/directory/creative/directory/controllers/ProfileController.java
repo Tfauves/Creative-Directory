@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 import javax.persistence.EntityManager;
 import java.util.List;
+import java.util.Objects;
 
 @CrossOrigin
 @RestController
@@ -127,21 +128,26 @@ public class ProfileController {
         return repository.save(profile);
 
     }
-    
+
     @PutMapping("/pic")
-    public Profile updateProfPic(@RequestBody Profile updateData) {
+    public Profile updateProfilePic(@RequestBody Profile pro) {
+
         User currentUser = userService.getCurrentUser();
+
         if (currentUser == null) {
             return null;
         }
 
         Profile profile = repository.findByUser_id(currentUser.getId()).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
-        if (profile.getProImg() != null) {
-            ProfileImg newPic = updateData.getProImg();
-            profile.setProImg(newPic);
-            profileImgRepository.save(newPic);
-            return profile;
+        if (!Objects.equals(pro.getProImg().getUrl(), "")) {
+            ProfileImg avatar = pro.getProImg();
+            avatar.setUrl(pro.getProImg().getUrl());
+            profileImgRepository.save(avatar);
+            profile.setProImg(avatar);
+
         }
+        ProfileImg avatar = profile.getProImg();
+        profileImgRepository.save(avatar);
 
         return repository.save(profile);
 
