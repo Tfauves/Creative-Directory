@@ -37,9 +37,9 @@ Video
 
 Admin login to enter information
 
-File read capabilities CSV
+ CSV File read capabilities
 
-Announcements on the public-facing page
+
 
 
 todo
@@ -53,12 +53,14 @@ contact info
 square footage available
 
 todo
+Announcements on the public-facing page
 The announcements feature allows for artist users to file forms for announcements to be reviewed by the admin.
-Admin Alerts: looks for members' names or business names to help maintain an accurate member database and up to date with active members.
+Admin Alerts: webscraper? looks for members' names or business names to help maintain an accurate member database and up to date with active members.
 
-Announcement{}
+Announcement{
 Artist{}
 text
 links[
 URL:
 ]
+}

@@ -14,7 +14,7 @@ import java.util.List;
 @CrossOrigin
 @RestController
 @RequestMapping("/api/livespace")
-public class LiveSpaceController {
+public class LiveWorkSpaceController {
 
     @Autowired
     private LiveWorkSpaceRepository liveWorkSpaceRepository;

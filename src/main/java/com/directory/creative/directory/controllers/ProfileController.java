@@ -41,18 +41,17 @@ public class ProfileController {
     @Autowired
     private UserService userService;
 
+
     @PostMapping
     public ResponseEntity<Profile> createProfile(@RequestBody Profile newProfile) {
         User currentUser = userService.getCurrentUser();
         if(currentUser == null) {
             return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
         }
-
         newProfile.setUser(currentUser);
+
         return new ResponseEntity<>(repository.save(newProfile), HttpStatus.CREATED);
     }
-
-
 
     @GetMapping("/all")
     @PreAuthorize("hasRole('ADMIN')")
@@ -60,17 +59,18 @@ public class ProfileController {
         return repository.findAll();
     }
 
-
     @GetMapping
     public Iterable<Profile> readAllProfile(boolean isDeleted) {
         Session session = entityManager.unwrap(Session.class);
+
         Filter filter = session.enableFilter("deletedProfileFilter");
         filter.setParameter("isDeleted", isDeleted);
+
         Iterable<Profile> profiles = repository.findAll();
         session.disableFilter("deletedProfileFilter");
+
         return profiles;
     }
-
 
     @GetMapping("/media/{mediaId}")
     public @ResponseBody List<Profile> findAllByMedia_id(@PathVariable Long mediaId) {
@@ -91,42 +91,32 @@ public class ProfileController {
     @GetMapping("/{id}")
     public @ResponseBody Profile getById() {
         User currentUser = userService.getCurrentUser();
-
         if(currentUser == null) {
             return null;
         }
 
         return repository.findByUser_id(currentUser.getId()).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
-
     }
 
-    // TODO: 9/4/2022 refactor to work with changes to profile this is part of issue with img 
     @PutMapping
     public @ResponseBody
     Profile updateProfile(@RequestBody Profile updateData) {
         User currentUser = userService.getCurrentUser();
         if (currentUser == null) {
             return null;
-
         }
-
         Profile profile = repository.findByUser_id(currentUser.getId()).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
         if (updateData.getFname() != null) profile.setFname(updateData.getFname());
         if (updateData.getLname() != null) profile.setLname(updateData.getLname());
         if (updateData.getBusinessName() != null) profile.setBusinessName(updateData.getBusinessName());
-        if (updateData.getMedia() != null) {
-            Discipline updatedDiscipline = mediaRepository.findById(updateData.getMedia().getId()).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
-            profile.setMedia(updatedDiscipline);
-        }
-
-//        if (updateData.getProImg().getUrl() != null) {
-//            ProfileImg newImg = updateData.getProImg();
-//            profileImgRepository.save(newImg);
-//            profile.setProImg(newImg);
-//        }
+        if (updateData.getHomeAddress() != null) profile.setHomeAddress(updateData.getHomeAddress());
+        if (updateData.getPhone() != null) profile.setPhone(updateData.getPhone());
+        if (updateData.getBusinessPhone() != null) profile.setBusinessPhone(updateData.getBusinessPhone());
+        if (updateData.getWebsite() !=null) profile.setWebsite(updateData.getWebsite());
+        if (updateData.getEmail() != null) profile.setEmail(updateData.getEmail());
+        if (updateData.getSocial() != null) profile.setSocial(updateData.getSocial());
 
         return repository.save(profile);
-
     }
 
     @PutMapping("/practice")
@@ -137,32 +127,27 @@ public class ProfileController {
         }
         Profile profile = repository.findByUser_id(currentUser.getId()).orElseThrow(()-> new ResponseStatusException(HttpStatus.NOT_FOUND));
         profile.setMedia(media);
-        return repository.save(profile);
 
+        return repository.save(profile);
     }
 
     @PutMapping("/pic")
     public Profile updateProfilePic(@RequestBody Profile pro) {
-
         User currentUser = userService.getCurrentUser();
-
         if (currentUser == null) {
             return null;
         }
-
         Profile profile = repository.findByUser_id(currentUser.getId()).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
         if (!Objects.equals(pro.getProImg().getUrl(), "")) {
             ProfileImg avatar = pro.getProImg();
             avatar.setUrl(pro.getProImg().getUrl());
             profileImgRepository.save(avatar);
             profile.setProImg(avatar);
-
         }
         ProfileImg avatar = profile.getProImg();
         profileImgRepository.save(avatar);
 
         return repository.save(profile);
-
     }
 
     @DeleteMapping("{id}")

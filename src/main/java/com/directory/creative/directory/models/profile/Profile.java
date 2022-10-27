@@ -9,16 +9,9 @@ import javax.persistence.*;
 import javax.persistence.Entity;
 import javax.persistence.Table;
 
-
-
 @Entity
 @Table(name = "profile")
-// @SQLDelete annotation to override the delete command.
-// changes the deleted field value to true instead of deleting the data permanently.
 @SQLDelete(sql = "UPDATE profile SET deleted = true WHERE id =?")
-//the deleted data will still be accessible.
-
-//@FilterDef annotation defines the basic requirements that will be used by @Filter annotation
 @FilterDef(name = "deletedProfileFilter", parameters = @ParamDef(name = "isDeleted", type = "boolean"))
 @Filter(name = "deletedProfileFilter", condition = "deleted = :isDeleted")
 public class Profile {
@@ -35,7 +28,6 @@ public class Profile {
     private String email;
     private String social;
     
-    //deleted property with the default value set as FALSE
     private Boolean deleted = Boolean.FALSE;
 
     @OneToOne

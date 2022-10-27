@@ -15,7 +15,9 @@ read all discipline types
 delete discipline admin only
 add discipline to profile by id
 
-todo updating user profile fields
+updates user profile fields
 
+todo space creation
+todo artist assets: space for shows or studio list
 
 

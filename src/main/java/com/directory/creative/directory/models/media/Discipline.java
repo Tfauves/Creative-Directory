@@ -1,6 +1,5 @@
 package com.directory.creative.directory.models.media;
 
-import com.directory.creative.directory.models.profile.Profile;
 import javax.persistence.*;
 
 @Entity
@@ -11,7 +10,6 @@ public class Discipline {
     private String practice;
 
     public Discipline() {}
-
 
     public Discipline(String practice) {
         this.practice = practice;
