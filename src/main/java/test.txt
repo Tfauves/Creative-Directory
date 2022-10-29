@@ -18,6 +18,9 @@ add discipline to profile by id
 updates user profile fields
 
 todo space creation
+show spaces can be created and read
+todo test workOnly spaces
+todo test live/work spaces
 todo artist assets: space for shows or studio list
 
 

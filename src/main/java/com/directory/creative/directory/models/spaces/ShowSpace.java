@@ -22,7 +22,6 @@ public class ShowSpace {
     }
 
     public ShowSpace(String propertyName, String address, String neighborhood, String listing, String totalArtistUnits, String rentOrOwn, Boolean waitList) {
-        this.id = id;
         this.propertyName = propertyName;
         this.address = address;
         this.neighborhood = neighborhood;

@@ -112,7 +112,7 @@ public class ProfileController {
         if (updateData.getHomeAddress() != null) profile.setHomeAddress(updateData.getHomeAddress());
         if (updateData.getPhone() != null) profile.setPhone(updateData.getPhone());
         if (updateData.getBusinessPhone() != null) profile.setBusinessPhone(updateData.getBusinessPhone());
-        if (updateData.getWebsite() !=null) profile.setWebsite(updateData.getWebsite());
+        if (updateData.getWebsite() != null) profile.setWebsite(updateData.getWebsite());
         if (updateData.getEmail() != null) profile.setEmail(updateData.getEmail());
         if (updateData.getSocial() != null) profile.setSocial(updateData.getSocial());
 
