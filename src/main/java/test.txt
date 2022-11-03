@@ -17,10 +17,11 @@ add discipline to profile by id
 
 updates user profile fields
 
-todo space creation
-show spaces can be created and read
-todo test workOnly spaces
-todo test live/work spaces
-todo artist assets: space for shows or studio list
+
+show spaces created and read - ok
+work only spaces created and read - ok
+live work spaces created and read - ok
+
+todo artist assets: space for shows or studio list asset obj holds a list of spaces.
 
 
