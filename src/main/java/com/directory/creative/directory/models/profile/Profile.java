@@ -157,11 +157,11 @@ public class Profile {
         this.user = user;
     }
 
-    public Discipline getMedia() {
+    public Discipline getDiscipline() {
         return discipline;
     }
 
-    public void setMedia(Discipline discipline) {
+    public void setDiscipline(Discipline discipline) {
         this.discipline = discipline;
     }
 

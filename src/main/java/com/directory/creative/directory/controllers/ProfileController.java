@@ -116,6 +116,11 @@ public class ProfileController {
         if (updateData.getEmail() != null) profile.setEmail(updateData.getEmail());
         if (updateData.getSocial() != null) profile.setSocial(updateData.getSocial());
 
+        if (updateData.getDiscipline() != null) {
+            Discipline updatedDiscipline = mediaRepository.findById(updateData.getDiscipline().getId()).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
+            profile.setDiscipline(updatedDiscipline);
+        }
+
         return repository.save(profile);
     }
 
@@ -126,7 +131,7 @@ public class ProfileController {
             return null;
         }
         Profile profile = repository.findByUser_id(currentUser.getId()).orElseThrow(()-> new ResponseStatusException(HttpStatus.NOT_FOUND));
-        profile.setMedia(media);
+        profile.setDiscipline(media);
 
         return repository.save(profile);
     }
