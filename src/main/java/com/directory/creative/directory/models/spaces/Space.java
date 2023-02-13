@@ -15,8 +15,6 @@ public abstract class Space {
     private String address;
     private String neighborhood;
     private String listing;
-//    private String totalArtistUnits;
-//    private String rentOrOwn;
     private Boolean waitList;
 
     public Space () {}

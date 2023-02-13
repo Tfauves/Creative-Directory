@@ -55,7 +55,7 @@ square footage available
 todo
 Announcements on the public-facing page
 The announcements feature allows for artist users to file forms for announcements to be reviewed by the admin.
-Admin Alerts: webscraper? looks for members' names or business names to help maintain an accurate member database and up to date with active members.
+Admin Alerts: webcrawler? looks for members' names or business names to help maintain an accurate member database and up to date with active members.
 
 Announcement{
 Artist{}
@@ -64,3 +64,22 @@ links[
 URL:
 ]
 }
+
+/////////// Space Model Super /////////////
+type
+propertyName
+address
+neighborhood
+listing
+waitList
+
+/////////// ShowSpace Model /////////////
+galleryDescription
+
+/////////// WorkOnlySpace Model /////////////
+totalArtistUnits
+rentOrOwn
+
+/////////// LiveWorkSpace Model /////////////
+bedroom
+bathroom
