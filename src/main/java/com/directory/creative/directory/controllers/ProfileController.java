@@ -105,19 +105,30 @@ public class ProfileController {
         if (currentUser == null) {
             return null;
         }
-        Profile profile = repository.findByUser_id(currentUser.getId()).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
-        if (updateData.getFname() != null) profile.setFname(updateData.getFname());
-        if (updateData.getLname() != null) profile.setLname(updateData.getLname());
-        if (updateData.getBusinessName() != null) profile.setBusinessName(updateData.getBusinessName());
-        if (updateData.getHomeAddress() != null) profile.setHomeAddress(updateData.getHomeAddress());
-        if (updateData.getPhone() != null) profile.setPhone(updateData.getPhone());
-        if (updateData.getBusinessPhone() != null) profile.setBusinessPhone(updateData.getBusinessPhone());
-        if (updateData.getWebsite() != null) profile.setWebsite(updateData.getWebsite());
-        if (updateData.getEmail() != null) profile.setEmail(updateData.getEmail());
-        if (updateData.getSocial() != null) profile.setSocial(updateData.getSocial());
+        Profile profile = repository.findByUser_id(currentUser.getId())
+                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
+        if (updateData.getFname() != null) profile
+                .setFname(updateData.getFname());
+        if (updateData.getLname() != null) profile
+                .setLname(updateData.getLname());
+        if (updateData.getBusinessName() != null) profile
+                .setBusinessName(updateData.getBusinessName());
+        if (updateData.getHomeAddress() != null) profile.
+                setHomeAddress(updateData.getHomeAddress());
+        if (updateData.getPhone() != null) profile
+                .setPhone(updateData.getPhone());
+        if (updateData.getBusinessPhone() != null) profile
+                .setBusinessPhone(updateData.getBusinessPhone());
+        if (updateData.getWebsite() != null) profile
+                .setWebsite(updateData.getWebsite());
+        if (updateData.getEmail() != null) profile
+                .setEmail(updateData.getEmail());
+        if (updateData.getSocial() != null) profile
+                .setSocial(updateData.getSocial());
 
         if (updateData.getDiscipline() != null) {
-            Discipline updatedDiscipline = mediaRepository.findById(updateData.getDiscipline().getId()).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
+            Discipline updatedDiscipline = mediaRepository.findById(updateData.getDiscipline()
+                    .getId()).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
             profile.setDiscipline(updatedDiscipline);
         }
 
@@ -161,11 +172,9 @@ public class ProfileController {
         return new ResponseEntity<>("deleted", HttpStatus.OK);
     }
 
-
     public EntityManager getEntityManager() {
         return entityManager;
     }
-
     public void setEntityManager(EntityManager entityManager) {
         this.entityManager = entityManager;
     }

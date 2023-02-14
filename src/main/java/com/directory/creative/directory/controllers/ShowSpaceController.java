@@ -1,6 +1,5 @@
 package com.directory.creative.directory.controllers;
 
-
 import com.directory.creative.directory.models.spaces.ShowSpace;
 import com.directory.creative.directory.models.spaces.Space;
 import com.directory.creative.directory.models.spaces.SpaceType;
@@ -17,10 +16,8 @@ import org.springframework.web.server.ResponseStatusException;
 @RequestMapping("/api/showspace")
 public class ShowSpaceController {
 
-
     @Autowired
-    ShowSpaceRepository showSpaceRepository;
-
+    private ShowSpaceRepository showSpaceRepository;
 
     @PostMapping
     @PreAuthorize("hasRole('ADMIN')")
@@ -28,6 +25,11 @@ public class ShowSpaceController {
         newShowSpace.setType(SpaceType.SHOW_ONLY);
 
         return new ResponseEntity<>(showSpaceRepository.save(newShowSpace), HttpStatus.CREATED);
+    }
+
+    @GetMapping
+    public Iterable<Space> readAllShowSpaces() {
+        return showSpaceRepository.findAll();
     }
 
     @PutMapping("/{spaceId}")
@@ -50,10 +52,11 @@ public class ShowSpaceController {
         return showSpaceRepository.save(showSpace);
     }
 
-    @GetMapping
-    public Iterable<Space> readAllShowSpaces() {
-        return showSpaceRepository.findAll();
-    }
+    @DeleteMapping("/{id}")
+    public ResponseEntity<String> destroyShowSpace(@PathVariable Long id) {
+        showSpaceRepository.deleteById(id);
+        return new ResponseEntity<>("DELETED", HttpStatus.OK);
 
+    }
 
 }
