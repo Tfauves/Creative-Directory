@@ -33,12 +33,31 @@ public class WorkOnlySpaceController {
     }
 
     @PutMapping("/{spaceId}")
-    public @ResponseBody WorkOnlySpace updateWorkSpace(@RequestBody WorkOnlySpace updateData, @PathVariable Long id) {
-        WorkOnlySpace workOnlySpace = (WorkOnlySpace) workOnlySpaceRepository.findById(id)
+    public @ResponseBody WorkOnlySpace updateWorkSpace(@RequestBody WorkOnlySpace updateData, @PathVariable Long spaceId) {
+        WorkOnlySpace workOnlySpace = (WorkOnlySpace) workOnlySpaceRepository.findById(spaceId)
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
         if (updateData.getPropertyName() != null) workOnlySpace
                 .setPropertyName(updateData.getPropertyName());
+        if (updateData.getAddress() != null) workOnlySpace
+                .setAddress(updateData.getAddress());
+        if (updateData.getNeighborhood() != null) workOnlySpace
+                .setNeighborhood(updateData.getNeighborhood());
+        if (updateData.getListing() != null) workOnlySpace
+                .setListing(updateData.getListing());
+        if (updateData.getWaitList() != null) workOnlySpace
+                .setWaitList(updateData.getWaitList());
+        if (updateData.getTotalArtistUnits() != null) workOnlySpace
+                .setTotalArtistUnits(updateData.getTotalArtistUnits());
+        if (updateData.getRentOrOwn() != null) workOnlySpace
+                .setRentOrOwn(updateData.getRentOrOwn());
 
         return workOnlySpaceRepository.save(workOnlySpace);
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<String> destroyWorkOnlySpace(@PathVariable Long id) {
+        workOnlySpaceRepository.deleteById(id);
+        return new ResponseEntity<>("DELETED", HttpStatus.OK);
+
     }
 }

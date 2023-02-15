@@ -22,6 +22,5 @@ show spaces created and read - ok
 work only spaces created and read - ok
 live work spaces created and read - ok
 
-todo artist assets: space for shows or studio list asset obj holds a list of spaces.
 
 

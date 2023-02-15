@@ -18,9 +18,8 @@ Social
 {gallery}
 
 /////////// done ////////////
-Discipline:
-Practice
-
+assets spaces
+delete mappings for all spaces
 /////////// to add to database later /////////////
 [all, multi-disciplinary, museums, design,  theater, living collections, visual arts, literary arts, history, folk arts, music, discipline arts, arts education, dance, other
 
@@ -38,19 +37,6 @@ Video
 Admin login to enter information
 
  CSV File read capabilities
-
-
-
-
-todo
-Artist asset
-this database will hold listings of buildings and locations that are available for either rent or as gallery space
-
-asset{}
-type studio, gallery, both
-address
-contact info
-square footage available
 
 todo
 Announcements on the public-facing page
@@ -83,3 +69,15 @@ rentOrOwn
 /////////// LiveWorkSpace Model /////////////
 bedroom
 bathroom
+
+
+
+todo  correct issue with reads for each space returns all spaces delete by id will delete any space
+
+
+todo inheritance refactor to profiles
+
+todo artist profile should have list to hold assets such as show spaces or work space
+
+todo public profile view of public info only
+todo artist profile view more info about other artists in the directory grant opportunities and space locations
