@@ -29,7 +29,7 @@ public class ShowSpaceController {
 
     @GetMapping
     public Iterable<Space> readAllShowSpaces() {
-        return showSpaceRepository.findAll();
+        return showSpaceRepository.findAllByType(SpaceType.SHOW_ONLY);
     }
 
     @PutMapping("/{spaceId}")

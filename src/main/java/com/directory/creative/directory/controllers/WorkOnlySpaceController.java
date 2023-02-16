@@ -29,7 +29,7 @@ public class WorkOnlySpaceController {
 
     @GetMapping
     public Iterable<Space> readAllWorkSpaces() {
-        return workOnlySpaceRepository.findAll();
+        return workOnlySpaceRepository.findAllByType(SpaceType.WORK_ONLY);
     }
 
     @PutMapping("/{spaceId}")

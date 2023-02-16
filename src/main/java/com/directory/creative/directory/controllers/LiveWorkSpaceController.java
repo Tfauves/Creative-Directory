@@ -10,6 +10,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
+import java.util.List;
 
 @CrossOrigin
 @RestController
@@ -27,8 +28,8 @@ public class LiveWorkSpaceController {
     }
 
     @GetMapping
-    public Iterable<Space> readAllLiveSpace() {
-        return liveWorkSpaceRepository.findAll();
+    public List<Space> readAllLiveSpace() {
+        return liveWorkSpaceRepository.findAllByType(SpaceType.LIVE_WORK);
     }
 
     @PutMapping("/{spaceId}")

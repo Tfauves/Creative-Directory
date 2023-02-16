@@ -1,44 +1,37 @@
-outline
-Creative directory
-///////// done ///////////
-Artists:
-First name
-Last name
-Business name
-Home address
-Business address
-Phone
-Business phone
-Website
-Social
-{Discipline}
 
-/////// add to profile model later //////////
+Creative directory
+
+todo inheritance refactor to profiles
+
+todo artist profile should have list to hold assets such as show spaces or work space
+
+todo public profile view of public info only
+
+todo artist profile view is allowed more info about other artists in the directory grant opportunities and space locations
+
+todo/////// add to profile model later //////////
 {press/statements}
 {gallery}
+
+
+todo/////////// discipline types to add to database later /////////////
+all, multi-disciplinary, museums, design,  theater, living collections, visual arts, literary arts, history, folk arts, music, discipline arts, arts education, dance, other
 
 /////////// done ////////////
 assets spaces
 delete mappings for all spaces
-/////////// to add to database later /////////////
-[all, multi-disciplinary, museums, design,  theater, living collections, visual arts, literary arts, history, folk arts, music, discipline arts, arts education, dance, other
-
+correct issue with reads for each space returns all spaces
 
 todo nice to have future features
 Press/statements:
 Artist Statement
 Links to news articles
-
 Gallery
 Sample images
 sound
 Video
-
 Admin login to enter information
-
- CSV File read capabilities
-
-todo
+CSV File read capabilities
 Announcements on the public-facing page
 The announcements feature allows for artist users to file forms for announcements to be reviewed by the admin.
 Admin Alerts: webcrawler? looks for members' names or business names to help maintain an accurate member database and up to date with active members.
@@ -70,14 +63,29 @@ rentOrOwn
 bedroom
 bathroom
 
+/////////// Tested and Working /////////////
+auth signup,
+auth signin,
+
+user created profile with all fields
+read all profiles included deleted profiles admin only
+read non deleted profiles as user or admin
+read self
+create user profile
+add profile pic to profile
+
+create discipline types admin only
+read all discipline types
+delete discipline admin only
+add discipline to profile by id
+
+updates user profile fields
 
 
-todo  correct issue with reads for each space returns all spaces delete by id will delete any space
+show spaces created and read - ok
+work only spaces created and read - ok
+live work spaces created and read - ok
 
 
-todo inheritance refactor to profiles
 
-todo artist profile should have list to hold assets such as show spaces or work space
 
-todo public profile view of public info only
-todo artist profile view more info about other artists in the directory grant opportunities and space locations
